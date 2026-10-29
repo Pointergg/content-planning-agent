@@ -1,0 +1,43 @@
+{
+  "version": "2026-10-29-v1",
+  "currency": "模拟单位",
+  "variants": {
+    "premium": {
+      "name": "精制短视频",
+      "description": "60秒品牌短片，含完整分镜、素材授权和精剪投放",
+      "costs": {"素材授权": 3, "脚本策划": 4, "剪辑与发布": 5},
+      "duration_minutes": 180,
+      "required_kind": "video",
+      "quality_rank": 3
+    },
+    "standard": {
+      "name": "轻量短视频",
+      "description": "30秒竖屏短视频，复用合成片段并简化剪辑",
+      "costs": {"素材授权": 2, "脚本策划": 2, "剪辑与发布": 4},
+      "duration_minutes": 90,
+      "required_kind": "video",
+      "quality_rank": 2
+    },
+    "lite": {
+      "name": "图文快讯",
+      "description": "三张图文卡片，适合预算紧或截止时间紧的活动",
+      "costs": {"素材授权": 1, "脚本策划": 1, "排版与发布": 3},
+      "duration_minutes": 40,
+      "required_kind": "image",
+      "quality_rank": 1
+    }
+  },
+  "tools": {
+    "search_materials": {"fee": 0, "duration_minutes": 2},
+    "generate_script": {"fee": 0, "duration_minutes": 5},
+    "estimate_cost": {"fee": 0, "duration_minutes": 1},
+    "save_plan": {"fee": 0, "duration_minutes": 1},
+    "finish": {"fee": 0, "duration_minutes": 0}
+  },
+  "notes": [
+    "所有素材与价格均为合成数据；工具是免费本地模拟，duration_minutes 是保守模拟工时而非真实运行耗时。",
+    "业务预算约束：选定方案制作费用 + 已发生工具费 + 保存工具费；真实模型 API 费用不包含在模拟单位中。",
+    "截止时间约束：当前时刻与逻辑起点加模拟累计工时取较晚值，再加剩余制作工时和保存耗时。制作尚未执行，完成只表示方案已保存。",
+    "生成脚本工具采用本地模板，不是视频生成或真实内容生产。模型仅负责动作选择和重规划。"
+  ]
+}

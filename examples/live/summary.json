@@ -1,0 +1,234 @@
+{
+  "provider": "live",
+  "model": {
+    "provider": "live",
+    "model": "deepseek-chat",
+    "protocol": "chat-completions-tool-calling",
+    "mock": false
+  },
+  "generated_at": "2026-10-29T08:05:55.062Z",
+  "simulated_clock": "2026-10-29T08:00:00.000Z",
+  "scenario_preference": "评审演示偏好：素材支持时先尝试 premium 并用工具实际估算，以观察真实报价；超限再考虑 standard 或 lite。部分成功只用可用素材；没有可行方案时通过工具确认缺口后停止。",
+  "cases": [
+    {
+      "name": "normal",
+      "status": "completed",
+      "total": 12,
+      "steps": 5,
+      "model_calls": 5,
+      "tokens": 15619,
+      "wall_seconds": 7.59,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "repeat",
+      "status": "completed",
+      "checks": {
+        "replayed": true,
+        "zero_new_calls": true,
+        "unchanged_artifact": true,
+        "unchanged_usage": true
+      },
+      "passed": true
+    },
+    {
+      "name": "missing-budget",
+      "status": "needs_input",
+      "total": null,
+      "steps": 0,
+      "model_calls": 0,
+      "tokens": 0,
+      "wall_seconds": 0.01,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "missing-deadline",
+      "status": "needs_input",
+      "total": null,
+      "steps": 0,
+      "model_calls": 0,
+      "tokens": 0,
+      "wall_seconds": 0.01,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "over-budget",
+      "status": "completed",
+      "total": 8,
+      "steps": 7,
+      "model_calls": 7,
+      "tokens": 26612,
+      "wall_seconds": 9.94,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true,
+        "observed_12_to_8": true
+      },
+      "passed": true
+    },
+    {
+      "name": "tool-failure",
+      "status": "completed",
+      "total": 12,
+      "steps": 6,
+      "model_calls": 6,
+      "tokens": 18970,
+      "wall_seconds": 7.63,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true,
+        "failure_injected": true,
+        "materials_not_repeated": true
+      },
+      "passed": true
+    },
+    {
+      "name": "tool-failure-persistent",
+      "status": "completed",
+      "total": 8,
+      "steps": 7,
+      "model_calls": 7,
+      "tokens": 22536,
+      "wall_seconds": 9.57,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true,
+        "failure_injected": true,
+        "materials_not_repeated": true,
+        "changed_variant": true
+      },
+      "passed": true
+    },
+    {
+      "name": "no-feasible",
+      "status": "incomplete",
+      "total": null,
+      "steps": 6,
+      "model_calls": 6,
+      "tokens": 20812,
+      "wall_seconds": 9.37,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "partial",
+      "status": "completed",
+      "total": 5,
+      "steps": 6,
+      "model_calls": 6,
+      "tokens": 18542,
+      "wall_seconds": 8.31,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true,
+        "used_partial": true
+      },
+      "passed": true
+    },
+    {
+      "name": "no-materials",
+      "status": "incomplete",
+      "total": null,
+      "steps": 3,
+      "model_calls": 3,
+      "tokens": 6441,
+      "wall_seconds": 4.14,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "deadline",
+      "status": "incomplete",
+      "total": null,
+      "steps": 8,
+      "model_calls": 8,
+      "tokens": 32925,
+      "wall_seconds": 12.68,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "resume",
+      "status": "incomplete",
+      "total": null,
+      "steps": 4,
+      "model_calls": 4,
+      "tokens": 11026,
+      "wall_seconds": 4.25,
+      "checks": {
+        "expected_status": true,
+        "no_false_success": true,
+        "budget_guard": true,
+        "deadline_guard": true,
+        "failed_steps_honest": true
+      },
+      "passed": true
+    },
+    {
+      "name": "resumed",
+      "status": "completed",
+      "checks": {
+        "completed": true,
+        "kept_successful_scripts": true,
+        "new_script_not_required": true,
+        "new_search_not_required": true,
+        "original_failure_retained": true
+      },
+      "passed": true
+    }
+  ],
+  "notes": "真实模型通过API选择工具；业务工具与时钟仍是本地合成模拟",
+  "passed": 13,
+  "total": 13
+}

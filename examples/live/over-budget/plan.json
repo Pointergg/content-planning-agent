@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "run_id": "over-budget",
+  "request": {
+    "theme": "新品发布",
+    "budget": 10,
+    "deadline": "2026-10-30T10:00:00.000Z"
+  },
+  "script": {
+    "id": "script-b7efb8ace27d",
+    "variant": "standard",
+    "name": "轻量短视频",
+    "material_ids": [
+      "launch-video-01",
+      "launch-image-01"
+    ],
+    "title": "新品发布｜轻量短视频",
+    "generator": "local-template-v1",
+    "content": [
+      {
+        "scene": "吸引注意",
+        "visual": "合成新品开箱片段",
+        "copy": "新品发布，发现值得参与的新体验",
+        "duration_seconds": 5
+      },
+      {
+        "scene": "价值展示",
+        "visual": "合成新品开箱片段；合成产品信息卡",
+        "copy": "展示活动亮点与参与流程，不编造效果、销量或优惠承诺",
+        "duration_seconds": 15
+      },
+      {
+        "scene": "行动引导",
+        "visual": "活动信息与报名入口占位",
+        "copy": "了解活动详情并参与；具体信息待运营核实",
+        "duration_seconds": 10
+      }
+    ],
+    "tasks": [
+      {
+        "id": "verify",
+        "name": "核实活动事实与素材授权",
+        "depends_on": [],
+        "minutes": 18,
+        "status": "planned"
+      },
+      {
+        "id": "produce",
+        "name": "按分镜剪辑视频",
+        "depends_on": [
+          "verify"
+        ],
+        "minutes": 54,
+        "status": "planned"
+      },
+      {
+        "id": "publish",
+        "name": "运营审核并发布",
+        "depends_on": [
+          "produce"
+        ],
+        "minutes": 18,
+        "status": "planned"
+      }
+    ],
+    "requires_human_review": true
+  },
+  "estimate": {
+    "script_id": "script-b7efb8ace27d",
+    "variant": "standard",
+    "currency": "模拟单位",
+    "items": [
+      {
+        "name": "素材授权",
+        "amount": 2
+      },
+      {
+        "name": "脚本策划",
+        "amount": 2
+      },
+      {
+        "name": "剪辑与发布",
+        "amount": 4
+      }
+    ],
+    "production_cost": 8,
+    "tool_fees": 0,
+    "save_fee": 0,
+    "total": 8,
+    "budget": 10,
+    "budget_gap": 0,
+    "production_minutes": 90,
+    "planning_minutes_spent": 15,
+    "expected_finish": "2026-10-29T09:45:00.000Z",
+    "deadline": "2026-10-30T10:00:00.000Z",
+    "deadline_gap_minutes": 0,
+    "feasible": true,
+    "alternatives": [
+      {
+        "variant": "premium",
+        "name": "精制短视频",
+        "production_cost": 12,
+        "production_minutes": 180,
+        "required_kind": "video"
+      },
+      {
+        "variant": "lite",
+        "name": "图文快讯",
+        "production_cost": 5,
+        "production_minutes": 40,
+        "required_kind": "image"
+      }
+    ]
+  },
+  "saved_at": "2026-10-29T08:00:00.000Z",
+  "completion_scope": "方案已保存；制作、审核、发布仍为 planned，未实际执行"
+}

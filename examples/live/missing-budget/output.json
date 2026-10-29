@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "missing-budget",
+  "status": "needs_input",
+  "reason": "缺少必填信息：budget",
+  "model": {
+    "provider": "live",
+    "model": "deepseek-chat",
+    "protocol": "chat-completions-tool-calling",
+    "mock": false
+  },
+  "request": {
+    "id": "missing-budget",
+    "theme": "新品发布",
+    "deadline": "2026-10-30T18:00:00+08:00"
+  },
+  "missing": [
+    "budget"
+  ],
+  "saved_plan": null,
+  "selected_variant": null,
+  "cost": {
+    "currency": "模拟单位",
+    "total": null,
+    "last_estimate": null,
+    "tool_fees": 0,
+    "api_cost": "not_measured_separate_from_simulated_budget"
+  },
+  "task_plan": [],
+  "steps": [],
+  "retained_results": {
+    "materials": [],
+    "scripts": [],
+    "estimates": []
+  },
+  "limits": {
+    "max_steps_per_session": 16,
+    "max_tool_calls_per_session": 16
+  },
+  "model_usage": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "planning_minutes": 0,
+  "calls_this_session": 0
+}

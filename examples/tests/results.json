@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-10-29T08:10:19.692Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "command": "node --test --test-reporter=spec",
+  "exit_code": 0,
+  "tests": 47,
+  "passed": 47,
+  "failed": 0,
+  "scope": "工程与HTTP替身测试；不作为真实模型效果证据"
+}

@@ -1,0 +1,11 @@
+[
+  {"id":"launch-video-01","topic":"新品发布","kind":"video","title":"合成新品开箱片段","content":"中性产品外观、开箱与使用场景，不含真实品牌或销量。","source":"primary","license":"synthetic-demo"},
+  {"id":"launch-image-01","topic":"新品发布","kind":"image","title":"合成产品信息卡","content":"展示产品亮点、活动时间和行动按钮，信息由运营最终确认。","source":"primary","license":"synthetic-demo"},
+  {"id":"launch-archive-01","topic":"新品发布","kind":"image","title":"备用产品海报底图","content":"可复用背景与留白版式，适合三张图文卡片。","source":"archive","license":"synthetic-demo"},
+  {"id":"eco-video-01","topic":"环保活动","kind":"video","title":"合成绿色校园片段","content":"步行、分类回收与自带水杯的合成活动场景。","source":"primary","license":"synthetic-demo"},
+  {"id":"eco-image-01","topic":"环保活动","kind":"image","title":"绿色行动卡片","content":"活动报名与环保行动清单，不声明无法验证的减排数据。","source":"primary","license":"synthetic-demo"},
+  {"id":"eco-archive-01","topic":"环保活动","kind":"image","title":"备用绿色背景","content":"绿色活动通用排版背景。","source":"archive","license":"synthetic-demo"},
+  {"id":"campus-video-01","topic":"校园招聘","kind":"video","title":"合成校园交流片段","content":"宣讲和答疑场景，不承诺录用结果。","source":"primary","license":"synthetic-demo"},
+  {"id":"campus-image-01","topic":"校园招聘","kind":"image","title":"校招信息模板","content":"岗位、截止时间、投递入口占位，发布前核实。","source":"primary","license":"synthetic-demo"},
+  {"id":"campus-archive-01","topic":"校园招聘","kind":"image","title":"备用校招海报","content":"宣讲活动海报版式。","source":"archive","license":"synthetic-demo"}
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "seq": 1,
+    "session": 1,
+    "at": "2026-10-29T08:00:00.000Z",
+    "kind": "tool",
+    "tool": "search_materials",
+    "args": {
+      "source": "primary",
+      "rationale": "先查询主题素材"
+    },
+    "decision_basis": "先查询主题素材",
+    "model": {
+      "provider": "mock",
+      "model": "deterministic-test-double-v1",
+      "mock": true
+    },
+    "response_id": null,
+    "cached": false,
+    "result": {
+      "status": "empty",
+      "materials": [],
+      "warning": "未找到匹配主题素材，请补充资料或停止；不可把其他主题素材冒充匹配结果"
+    },
+    "step_status": "succeeded"
+  },
+  {
+    "seq": 2,
+    "session": 1,
+    "at": "2026-10-29T08:00:00.000Z",
+    "kind": "tool",
+    "tool": "search_materials",
+    "args": {
+      "source": "archive",
+      "rationale": "主库不可用或无素材，尝试备用库"
+    },
+    "decision_basis": "主库不可用或无素材，尝试备用库",
+    "model": {
+      "provider": "mock",
+      "model": "deterministic-test-double-v1",
+      "mock": true
+    },
+    "response_id": null,
+    "cached": false,
+    "result": {
+      "status": "empty",
+      "materials": [],
+      "warning": "未找到匹配主题素材，请补充资料或停止；不可把其他主题素材冒充匹配结果"
+    },
+    "step_status": "succeeded"
+  },
+  {
+    "seq": 3,
+    "session": 1,
+    "at": "2026-10-29T08:00:00.000Z",
+    "kind": "tool",
+    "tool": "finish",
+    "args": {
+      "status": "incomplete",
+      "reason": "两处素材库均无可用资料，请补充主题素材",
+      "rationale": "素材依赖未满足"
+    },
+    "decision_basis": "素材依赖未满足",
+    "model": {
+      "provider": "mock",
+      "model": "deterministic-test-double-v1",
+      "mock": true
+    },
+    "response_id": null,
+    "cached": false,
+    "result": {
+      "status": "incomplete",
+      "reason": "未保存方案。已保留 0 份素材、0 份成功脚本。尚无成功的工具估算。请查看素材结果及约束缺口；修改主题、预算或截止时间须新建 id。",
+      "model_note": "两处素材库均无可用资料，请补充主题素材",
+      "model_note_is_unverified": true
+    },
+    "step_status": "succeeded"
+  }
+]

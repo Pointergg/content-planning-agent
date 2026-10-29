@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "id": "tool-failure-persistent",
+  "status": "completed",
+  "reason": "方案已保存：轻量短视频，费用 8/20 模拟单位，预计完成 2026-10-29T09:49:00.000Z。制作、审核、发布仍为 planned，未实际执行。",
+  "model": {
+    "provider": "live",
+    "model": "deepseek-chat",
+    "protocol": "chat-completions-tool-calling",
+    "mock": false
+  },
+  "request": {
+    "theme": "新品发布",
+    "budget": 20,
+    "deadline": "2026-10-30T10:00:00.000Z"
+  },
+  "missing": [],
+  "saved_plan": "plan.json",
+  "selected_variant": "standard",
+  "cost": {
+    "currency": "模拟单位",
+    "total": 8,
+    "last_estimate": {
+      "script_id": "script-b7efb8ace27d",
+      "variant": "standard",
+      "currency": "模拟单位",
+      "items": [
+        {
+          "name": "素材授权",
+          "amount": 2
+        },
+        {
+          "name": "脚本策划",
+          "amount": 2
+        },
+        {
+          "name": "剪辑与发布",
+          "amount": 4
+        }
+      ],
+      "production_cost": 8,
+      "tool_fees": 0,
+      "save_fee": 0,
+      "total": 8,
+      "budget": 20,
+      "budget_gap": 0,
+      "production_minutes": 90,
+      "planning_minutes_spent": 19,
+      "expected_finish": "2026-10-29T09:49:00.000Z",
+      "deadline": "2026-10-30T10:00:00.000Z",
+      "deadline_gap_minutes": 0,
+      "feasible": true,
+      "alternatives": [
+        {
+          "variant": "premium",
+          "name": "精制短视频",
+          "production_cost": 12,
+          "production_minutes": 180,
+          "required_kind": "video"
+        },
+        {
+          "variant": "lite",
+          "name": "图文快讯",
+          "production_cost": 5,
+          "production_minutes": 40,
+          "required_kind": "image"
+        }
+      ]
+    },
+    "tool_fees": 0,
+    "api_cost": "not_measured_separate_from_simulated_budget"
+  },
+  "task_plan": [
+    {
+      "id": "verify",
+      "name": "核实活动事实与素材授权",
+      "depends_on": [],
+      "minutes": 18,
+      "status": "planned"
+    },
+    {
+      "id": "produce",
+      "name": "按分镜剪辑视频",
+      "depends_on": [
+        "verify"
+      ],
+      "minutes": 54,
+      "status": "planned"
+    },
+    {
+      "id": "publish",
+      "name": "运营审核并发布",
+      "depends_on": [
+        "produce"
+      ],
+      "minutes": 18,
+      "status": "planned"
+    }
+  ],
+  "steps": [
+    {
+      "seq": 1,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "search_materials",
+      "args": {
+        "source": "primary",
+        "rationale": "新品发布主题需先检索主库素材，确认是否有视频以支持评审偏好的 premium 尝试。"
+      },
+      "decision_basis": "新品发布主题需先检索主库素材，确认是否有视频以支持评审偏好的 premium 尝试。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "79ad9899-fb8b-460a-9e44-810e8e9cd3fe",
+      "cached": false,
+      "result": {
+        "status": "ok",
+        "materials": [
+          {
+            "id": "launch-video-01",
+            "topic": "新品发布",
+            "kind": "video",
+            "title": "合成新品开箱片段",
+            "content": "中性产品外观、开箱与使用场景，不含真实品牌或销量。",
+            "source": "primary",
+            "license": "synthetic-demo"
+          },
+          {
+            "id": "launch-image-01",
+            "topic": "新品发布",
+            "kind": "image",
+            "title": "合成产品信息卡",
+            "content": "展示产品亮点、活动时间和行动按钮，信息由运营最终确认。",
+            "source": "primary",
+            "license": "synthetic-demo"
+          }
+        ],
+        "warning": null
+      },
+      "step_status": "succeeded"
+    },
+    {
+      "seq": 2,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "generate_script",
+      "args": {
+        "variant": "premium",
+        "material_ids": [
+          "launch-video-01",
+          "launch-image-01"
+        ],
+        "rationale": "主库已确认有新品发布视频素材，按评审偏好先生成 premium 脚本以便实际估算报价。"
+      },
+      "decision_basis": "主库已确认有新品发布视频素材，按评审偏好先生成 premium 脚本以便实际估算报价。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "01af69b9-892d-4712-9a97-9adcdbf4e324",
+      "cached": false,
+      "step_status": "failed",
+      "result": {
+        "status": "error",
+        "code": "INJECTED_TOOL_FAILURE",
+        "message": "注入工具失败：generate_script:premium",
+        "details": {
+          "retryable": true,
+          "successful_results_retained": true
+        }
+      }
+    },
+    {
+      "seq": 3,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "generate_script",
+      "args": {
+        "variant": "premium",
+        "material_ids": [
+          "launch-video-01",
+          "launch-image-01"
+        ],
+        "rationale": "上次 premium 脚本生成是注入的可重试失败，素材已成功保留，按评审偏好重试一次以获取实际估算。"
+      },
+      "decision_basis": "上次 premium 脚本生成是注入的可重试失败，素材已成功保留，按评审偏好重试一次以获取实际估算。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "b96854ec-aa9d-44d6-a5a7-eaa315a5ceb4",
+      "cached": false,
+      "step_status": "failed",
+      "result": {
+        "status": "error",
+        "code": "INJECTED_TOOL_FAILURE",
+        "message": "注入工具失败：generate_script:premium",
+        "details": {
+          "retryable": true,
+          "successful_results_retained": true
+        }
+      }
+    },
+    {
+      "seq": 4,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "generate_script",
+      "args": {
+        "variant": "standard",
+        "material_ids": [
+          "launch-video-01",
+          "launch-image-01"
+        ],
+        "rationale": "premium 脚本连续两次注入失败，改用 standard 规格生成脚本以推进可行方案。"
+      },
+      "decision_basis": "premium 脚本连续两次注入失败，改用 standard 规格生成脚本以推进可行方案。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "8a7dff30-16a5-4915-b635-5f25d72c5877",
+      "cached": false,
+      "result": {
+        "status": "ok",
+        "script": {
+          "id": "script-b7efb8ace27d",
+          "variant": "standard",
+          "name": "轻量短视频",
+          "material_ids": [
+            "launch-video-01",
+            "launch-image-01"
+          ],
+          "title": "新品发布｜轻量短视频",
+          "generator": "local-template-v1",
+          "content": [
+            {
+              "scene": "吸引注意",
+              "visual": "合成新品开箱片段",
+              "copy": "新品发布，发现值得参与的新体验",
+              "duration_seconds": 5
+            },
+            {
+              "scene": "价值展示",
+              "visual": "合成新品开箱片段；合成产品信息卡",
+              "copy": "展示活动亮点与参与流程，不编造效果、销量或优惠承诺",
+              "duration_seconds": 15
+            },
+            {
+              "scene": "行动引导",
+              "visual": "活动信息与报名入口占位",
+              "copy": "了解活动详情并参与；具体信息待运营核实",
+              "duration_seconds": 10
+            }
+          ],
+          "tasks": [
+            {
+              "id": "verify",
+              "name": "核实活动事实与素材授权",
+              "depends_on": [],
+              "minutes": 18,
+              "status": "planned"
+            },
+            {
+              "id": "produce",
+              "name": "按分镜剪辑视频",
+              "depends_on": [
+                "verify"
+              ],
+              "minutes": 54,
+              "status": "planned"
+            },
+            {
+              "id": "publish",
+              "name": "运营审核并发布",
+              "depends_on": [
+                "produce"
+              ],
+              "minutes": 18,
+              "status": "planned"
+            }
+          ],
+          "requires_human_review": true
+        }
+      },
+      "step_status": "succeeded"
+    },
+    {
+      "seq": 5,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "estimate_cost",
+      "args": {
+        "script_id": "script-b7efb8ace27d",
+        "rationale": "premium 脚本两次生成失败，已有 standard 脚本，先实际估算其费用与完成时间是否满足预算20与截止时间。"
+      },
+      "decision_basis": "premium 脚本两次生成失败，已有 standard 脚本，先实际估算其费用与完成时间是否满足预算20与截止时间。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "7cf71734-cb33-4a64-84d0-bbb3408dfa88",
+      "cached": false,
+      "result": {
+        "status": "ok",
+        "estimate": {
+          "script_id": "script-b7efb8ace27d",
+          "variant": "standard",
+          "currency": "模拟单位",
+          "items": [
+            {
+              "name": "素材授权",
+              "amount": 2
+            },
+            {
+              "name": "脚本策划",
+              "amount": 2
+            },
+            {
+              "name": "剪辑与发布",
+              "amount": 4
+            }
+          ],
+          "production_cost": 8,
+          "tool_fees": 0,
+          "save_fee": 0,
+          "total": 8,
+          "budget": 20,
+          "budget_gap": 0,
+          "production_minutes": 90,
+          "planning_minutes_spent": 18,
+          "expected_finish": "2026-10-29T09:49:00.000Z",
+          "deadline": "2026-10-30T10:00:00.000Z",
+          "deadline_gap_minutes": 0,
+          "feasible": true,
+          "alternatives": [
+            {
+              "variant": "premium",
+              "name": "精制短视频",
+              "production_cost": 12,
+              "production_minutes": 180,
+              "required_kind": "video"
+            },
+            {
+              "variant": "lite",
+              "name": "图文快讯",
+              "production_cost": 5,
+              "production_minutes": 40,
+              "required_kind": "image"
+            }
+          ]
+        }
+      },
+      "step_status": "succeeded"
+    },
+    {
+      "seq": 6,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "save_plan",
+      "args": {
+        "script_id": "script-b7efb8ace27d",
+        "rationale": "standard 脚本已实际估算通过（总费用8≤预算20，预计完成早于截止），premium 两次生成失败，故保存该可行方案。"
+      },
+      "decision_basis": "standard 脚本已实际估算通过（总费用8≤预算20，预计完成早于截止），premium 两次生成失败，故保存该可行方案。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "9b43ad53-4025-4578-b8cf-283306560bc5",
+      "cached": false,
+      "result": {
+        "status": "ok",
+        "artifact": "plan.json",
+        "script_id": "script-b7efb8ace27d",
+        "total": 8
+      },
+      "step_status": "succeeded"
+    },
+    {
+      "seq": 7,
+      "session": 1,
+      "at": "2026-10-29T08:00:00.000Z",
+      "kind": "tool",
+      "tool": "finish",
+      "args": {
+        "status": "completed",
+        "reason": "已保存方案 script-b7efb8ace27d（standard 轻量短视频，素材 launch-video-01 + launch-image-01）。实际估算：总费用 8 模拟单位（≤预算 20），预计完成 2026-10-29T09:49:00Z（早于截止 2026-10-30T10:00:00Z），估算 feasible。premium 脚本生成连续两次注入失败，未能取得 premium 实际估算；目录中 premium 报价（12 单位/180 分钟）仅为目录参考，非实际估算。方案已保存，制作、审核、发布仍为 planned，未实际执行。",
+        "rationale": "standard 方案已实际估算通过并由 save_plan 成功保存，故按规则报告完成。"
+      },
+      "decision_basis": "standard 方案已实际估算通过并由 save_plan 成功保存，故按规则报告完成。",
+      "model": {
+        "provider": "live",
+        "model": "deepseek-chat",
+        "protocol": "chat-completions-tool-calling",
+        "mock": false
+      },
+      "response_id": "8a3b4a65-e054-4f91-8326-8e99f65183ba",
+      "cached": false,
+      "result": {
+        "status": "completed",
+        "reason": "方案已保存：轻量短视频，费用 8/20 模拟单位，预计完成 2026-10-29T09:49:00.000Z。制作、审核、发布仍为 planned，未实际执行。",
+        "model_note": "已保存方案 script-b7efb8ace27d（standard 轻量短视频，素材 launch-video-01 + launch-image-01）。实际估算：总费用 8 模拟单位（≤预算 20），预计完成 2026-10-29T09:49:00Z（早于截止 2026-10-30T10:00:00Z），估算 feasible。premium 脚本生成连续两次注入失败，未能取得 premium 实际估算；目录中 premium 报价（12 单位/180 分钟）仅为目录参考，非实际估算。方案已保存，制作、审核、发布仍为 planned，未实际执行。",
+        "model_note_is_unverified": true
+      },
+      "step_status": "succeeded"
+    }
+  ],
+  "retained_results": {
+    "materials": [
+      {
+        "id": "launch-video-01",
+        "topic": "新品发布",
+        "kind": "video",
+        "title": "合成新品开箱片段",
+        "content": "中性产品外观、开箱与使用场景，不含真实品牌或销量。",
+        "source": "primary",
+        "license": "synthetic-demo"
+      },
+      {
+        "id": "launch-image-01",
+        "topic": "新品发布",
+        "kind": "image",
+        "title": "合成产品信息卡",
+        "content": "展示产品亮点、活动时间和行动按钮，信息由运营最终确认。",
+        "source": "primary",
+        "license": "synthetic-demo"
+      }
+    ],
+    "scripts": [
+      {
+        "id": "script-b7efb8ace27d",
+        "variant": "standard",
+        "name": "轻量短视频",
+        "material_ids": [
+          "launch-video-01",
+          "launch-image-01"
+        ],
+        "title": "新品发布｜轻量短视频",
+        "generator": "local-template-v1",
+        "content": [
+          {
+            "scene": "吸引注意",
+            "visual": "合成新品开箱片段",
+            "copy": "新品发布，发现值得参与的新体验",
+            "duration_seconds": 5
+          },
+          {
+            "scene": "价值展示",
+            "visual": "合成新品开箱片段；合成产品信息卡",
+            "copy": "展示活动亮点与参与流程，不编造效果、销量或优惠承诺",
+            "duration_seconds": 15
+          },
+          {
+            "scene": "行动引导",
+            "visual": "活动信息与报名入口占位",
+            "copy": "了解活动详情并参与；具体信息待运营核实",
+            "duration_seconds": 10
+          }
+        ],
+        "tasks": [
+          {
+            "id": "verify",
+            "name": "核实活动事实与素材授权",
+            "depends_on": [],
+            "minutes": 18,
+            "status": "planned"
+          },
+          {
+            "id": "produce",
+            "name": "按分镜剪辑视频",
+            "depends_on": [
+              "verify"
+            ],
+            "minutes": 54,
+            "status": "planned"
+          },
+          {
+            "id": "publish",
+            "name": "运营审核并发布",
+            "depends_on": [
+              "produce"
+            ],
+            "minutes": 18,
+            "status": "planned"
+          }
+        ],
+        "requires_human_review": true
+      }
+    ],
+    "estimates": [
+      {
+        "script_id": "script-b7efb8ace27d",
+        "variant": "standard",
+        "currency": "模拟单位",
+        "items": [
+          {
+            "name": "素材授权",
+            "amount": 2
+          },
+          {
+            "name": "脚本策划",
+            "amount": 2
+          },
+          {
+            "name": "剪辑与发布",
+            "amount": 4
+          }
+        ],
+        "production_cost": 8,
+        "tool_fees": 0,
+        "save_fee": 0,
+        "total": 8,
+        "budget": 20,
+        "budget_gap": 0,
+        "production_minutes": 90,
+        "planning_minutes_spent": 18,
+        "expected_finish": "2026-10-29T09:49:00.000Z",
+        "deadline": "2026-10-30T10:00:00.000Z",
+        "deadline_gap_minutes": 0,
+        "feasible": true,
+        "alternatives": [
+          {
+            "variant": "premium",
+            "name": "精制短视频",
+            "production_cost": 12,
+            "production_minutes": 180,
+            "required_kind": "video"
+          },
+          {
+            "variant": "lite",
+            "name": "图文快讯",
+            "production_cost": 5,
+            "production_minutes": 40,
+            "required_kind": "image"
+          }
+        ]
+      }
+    ]
+  },
+  "limits": {
+    "max_steps_per_session": 16,
+    "max_tool_calls_per_session": 16
+  },
+  "model_usage": {
+    "calls": 7,
+    "prompt_tokens": 21757,
+    "completion_tokens": 779,
+    "total_tokens": 22536
+  },
+  "planning_minutes": 19,
+  "calls_this_session": 7
+}

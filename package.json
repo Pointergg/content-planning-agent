@@ -1,0 +1,14 @@
+{
+  "name": "content-planning-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A stateful content campaign agent with model-driven replanning, guarded tools and reproducible evidence",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test --test-reporter=spec",
+    "demo": "node scripts/evaluate.mjs --provider mock",
+    "evaluate:live": "node --env-file=.env scripts/evaluate.mjs --provider live",
+    "start": "node src/cli.mjs"
+  }
+}

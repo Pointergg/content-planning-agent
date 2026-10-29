@@ -1,0 +1,13 @@
+import { spawnSync } from 'node:child_process';
+import { writeFile } from 'node:fs/promises';
+import { atomicJSON, ensureDir } from '../src/common.mjs';
+const started=new Date();
+const result=spawnSync(process.execPath,['--test','--test-reporter=spec'],{encoding:'utf8',timeout:60000});
+const output=(result.stdout||'')+(result.stderr||'');
+await ensureDir(new URL('../examples/tests/',import.meta.url));
+await writeFile(new URL('../examples/tests/output.txt',import.meta.url),output);
+const count=name=>Number(new RegExp(`(?:ℹ |# )${name} (\\d+)`).exec(output)?.[1]||0);
+await atomicJSON(new URL('../examples/tests/results.json',import.meta.url),{generated_at:started.toISOString(),node:process.version,platform:process.platform,command:'node --test --test-reporter=spec',exit_code:result.status,tests:count('tests'),passed:count('pass'),failed:count('fail'),scope:'工程与HTTP替身测试；不作为真实模型效果证据'});
+const measuredStart=new Date('2026-10-29T15:53:20.517+08:00');
+await atomicJSON(new URL('../docs/build-session.json',import.meta.url),{measured_start:measuredStart.toISOString(),local_verification_completed:new Date().toISOString(),elapsed_minutes_lower_bound:Number(((Date.now()-measuredStart)/60000).toFixed(2)),note:'起点为首个项目文件写入时间；此前读题/环境检查不计入，此记录是下界。后续复测时此值代表距起点经过的墙钟时间，不表示持续人工工时。候选人个人学习时间未记录。'});
+console.log(output);process.exitCode=result.status===0?0:1;
