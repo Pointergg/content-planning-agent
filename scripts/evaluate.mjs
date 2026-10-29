@@ -38,7 +38,7 @@ async function persist(name,input,result) {
     const {rationale,...args}=e.args||{};
     const summary=e.result?.estimate ? `费用${e.result.estimate.total}，预算缺口${e.result.estimate.budget_gap}，时间缺口${e.result.estimate.deadline_gap_minutes}分钟` : e.result?.script ? `生成 ${e.result.script.id}，规格 ${e.result.script.variant}` : e.result?.materials ? `${e.result.status}，素材 ${e.result.materials.map(x=>x.id).join(',')}` : JSON.stringify(e.result);
     return `|${e.seq}|${e.session}|${e.tool||e.kind}|${esc(JSON.stringify(args))}|${esc(summary)}|${esc(e.decision_basis)}|${e.step_status||'failed'}${e.cached?' (cached)':''}|`;
-  }).join('\n')+'\n');
+  }).join('\n')+(result.steps.length?'\n':''));
   if(result.saved_plan)await copyFile(join(root,input.id,'plan.json'),join(dir,'plan.json'));
   else await rm(join(dir,'plan.json'),{force:true});
 }
